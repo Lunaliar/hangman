@@ -2,14 +2,13 @@ import {useState, useEffect, useCallback} from "react";
 import {HangmanDrawing} from "./HangmanDrawing";
 import {HangmanWord} from "./HangmanWord";
 import {Keyboard} from "./Keyboard";
+import {FaSkull} from "react-icons/fa";
 import words from "./wordList.json";
 function App() {
 	function getWord() {
 		return words[Math.floor(Math.random() * words.length)];
 	}
 	const [secretWord, setSecretWord] = useState(getWord());
-
-	console.log(secretWord); //!! GET RID OF THIS LINE
 
 	const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
 	const incorrectLetters = guessedLetters.filter(
@@ -57,28 +56,31 @@ function App() {
 
 	return (
 		<div className="App">
-			<div className="left">
-				<HangmanDrawing numberOfGuesses={incorrectLetters.length} />
-				<div className="win-loss">
-					{isWinner && "- You've won! -  [Enter] to retry"}
-					{isLoser && "- You've lost - [Enter] to retry"}
-				</div>
+			<div className="icons">
+				{incorrectLetters.length < 6 ? (
+					<HangmanDrawing numberOfGuesses={incorrectLetters.length} />
+				) : (
+					<FaSkull className="skull" />
+				)}
 			</div>
-			<div>
-				<HangmanWord
-					reveal={isLoser}
-					guessedLetters={guessedLetters}
-					wordToGuess={secretWord}
-				/>
-				<Keyboard
-					activeLetters={guessedLetters.filter((letter) =>
-						secretWord.includes(letter)
-					)}
-					disabled={disabled}
-					inactiveLetters={incorrectLetters}
-					addGuessedLetter={addGussedLetter}
-				/>
+			<div className="win-loss">
+				{!isWinner && !isLoser ? "Good luck!" : ""}
+				{isWinner && "- You've won! -  [Enter] to retry"}
+				{isLoser && "- You've lost - [Enter] to retry"}
 			</div>
+			<HangmanWord
+				reveal={isLoser}
+				guessedLetters={guessedLetters}
+				wordToGuess={secretWord}
+			/>
+			<Keyboard
+				activeLetters={guessedLetters.filter((letter) =>
+					secretWord.includes(letter)
+				)}
+				disabled={disabled}
+				inactiveLetters={incorrectLetters}
+				addGuessedLetter={addGussedLetter}
+			/>
 		</div>
 	);
 }
