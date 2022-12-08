@@ -81,6 +81,10 @@ function App() {
 				inactiveLetters={incorrectLetters}
 				addGuessedLetter={addGussedLetter}
 			/>
+			<p>
+				<a href="https://savcodes.dev">Sav Costabile</a>
+				<span> Ⓒ 2022</span>
+			</p>
 		</div>
 	);
 }

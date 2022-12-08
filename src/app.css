@@ -3,11 +3,12 @@
 	padding-top: 15vh;
 	flex-direction: column;
 	gap: 2em;
-	min-height: 70vh;
+	min-height: 80vh;
 	margin: auto;
 	justify-content: center;
 	align-items: center;
 	font-size: 0.45rem;
+	max-height: 100vh;
 }
 
 @media screen and (min-width: 29rem) {
@@ -36,6 +37,12 @@
 }
 .skull {
 	font-size: 2em;
+}
+.lives {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 100%;
 }
 
 .word {
@@ -67,10 +74,11 @@
 	aspect-ratio: 1/1;
 	font-size: 2.5em;
 	text-transform: uppercase;
-	padding: 0.5em;
+	padding: 0.1em;
 	font-weight: bold;
 	cursor: pointer;
 	color: black;
+	border-radius: 0.3rem;
 }
 
 .button:hover:not(:disabled),
