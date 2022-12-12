@@ -1,6 +1,6 @@
 .App {
 	display: flex;
-	padding-top: 15vh;
+	padding-top: 10vh;
 	flex-direction: column;
 	gap: 2em;
 	min-height: 80vh;
@@ -10,7 +10,12 @@
 	font-size: 0.45rem;
 	max-height: 100vh;
 }
-
+.credit {
+	margin-bottom: 0.5rem;
+}
+.credit a {
+	color: blue;
+}
 @media screen and (min-width: 29rem) {
 	.App {
 		max-width: 20vw;

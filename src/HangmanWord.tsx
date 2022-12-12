@@ -12,7 +12,7 @@ export function HangmanWord({
 		<div className="word">
 			{wordToGuess.split("").map((letter, index) => {
 				return (
-					<span className="letter-container">
+					<span className="letter-container" key={`${index}|${letter}`}>
 						<span
 							style={{
 								visibility:
@@ -21,7 +21,6 @@ export function HangmanWord({
 										: "hidden",
 								color: !guessedLetters.includes(letter) && reveal ? "red" : "",
 							}}
-							key={`${index}|${letter}`}
 						>
 							{letter}
 						</span>
