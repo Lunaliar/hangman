@@ -1,3 +1,4 @@
 # Hangman
 
-Once I had learned the basics of using TypeScript I wanted to try my hand at an actual project instead of just doing concept exercises. This was tricky and I definitely want to take a course on TypeScript later on when I have more time as it's the best form of coding I've seen in a long time due to it's ability to avoid almost every error.
+I did this little practice project with some help to solidify my working knowledge of TypeScript. It was one of my first forrays into TypeScript, and it was a tricky conundrum. However, I truly enjoyed this project and learned much, even outside the TypeScript knowledge I was cementing.
+
