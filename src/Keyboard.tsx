@@ -1,33 +1,9 @@
 import {useEffect} from 'react'
 
-const KEYS = [
-  'a',
-  'b',
-  'c',
-  'd',
-  'e',
-  'f',
-  'g',
-  'h',
-  'i',
-  'j',
-  'k',
-  'l',
-  'm',
-  'n',
-  'o',
-  'p',
-  'q',
-  'r',
-  's',
-  't',
-  'u',
-  'v',
-  'w',
-  'x',
-  'y',
-  'z',
-]
+const alphabet = () => {
+  const codes = Array.from(Array(26)).map((e, i) => i + 65)
+  return codes.map(x => String.fromCharCode(x).toLowerCase())
+}
 
 type keyboardProps = {
   activeLetters: string[]
@@ -44,7 +20,7 @@ export function Keyboard({
 }: keyboardProps) {
   return (
     <div className="keyboard">
-      {KEYS.map(key => {
+      {alphabet().map(key => {
         const isActive = activeLetters.includes(key)
         const isInActive = inactiveLetters.includes(key)
         return (

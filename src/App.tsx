@@ -5,20 +5,23 @@ import {Keyboard} from './Keyboard'
 import {FaSkull} from 'react-icons/fa'
 import words from './wordList.json'
 function App() {
-  function getWord() {
-    return words[Math.floor(Math.random() * words.length)]
-  }
+  const getWord = () => words[Math.floor(Math.random() * words.length)]
+
   const [secretWord, setSecretWord] = useState(getWord())
 
   const [guessedLetters, setGuessedLetters] = useState<string[]>([])
+
   const incorrectLetters = guessedLetters.filter(
     letter => !secretWord.includes(letter)
   )
   const isLoser = incorrectLetters.length >= 6
+
   const isWinner = secretWord
     .split('')
     .every(letter => guessedLetters.includes(letter))
+
   const disabled = isLoser || isWinner
+
   const addGussedLetter = useCallback(
     (letter: string) => {
       if (guessedLetters.includes(letter) || isLoser || isWinner) return
@@ -29,21 +32,19 @@ function App() {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      const key = e.key
-      if (!key.match(/^[a-z]$/)) return
+      if (!e.key.match(/^[a-z]$/)) return
       e.preventDefault()
-      addGussedLetter(key)
+      addGussedLetter(e.key)
     }
     document.addEventListener('keypress', handler)
     return () => {
       document.removeEventListener('keypress', handler)
     }
   }, [guessedLetters])
+
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      const key = e.key
-      if (key !== 'Enter') return
-
+      if (e.key !== 'Enter') return
       e.preventDefault()
       setGuessedLetters([])
       setSecretWord(getWord())
@@ -65,8 +66,18 @@ function App() {
       </div>
       <div className="win-loss">
         {!isWinner && !isLoser ? 'Good luck!' : ''}
-        {isWinner && "- You've won! -  [Enter] to retry"}
-        {isLoser && "- You've lost - [Enter] to retry"}
+        {isWinner && (
+          <div className="win-loss-message">
+            <span>- You've Won! -</span>
+            <span>[Enter] to retry</span>
+          </div>
+        )}
+        {isLoser && (
+          <div className="win-loss-message">
+            <span>- You've lost -</span>
+            <span>[Enter] to retry</span>
+          </div>
+        )}
       </div>
       <HangmanWord
         reveal={isLoser}

@@ -32,14 +32,14 @@
 }
 @media screen and (min-width: 114rem) {
   .App {
-    font-size: 1.7em;
+    font-size: 1.1em;
   }
 }
 
 .win-loss {
   font-size: 2em;
   text-align: center;
-  margin-bottom: 0.75em;
+  margin-bottom: 01.5em;
   max-width: 20em;
   max-height: 6em;
   max-height: 0;
@@ -110,6 +110,10 @@
   opacity: 0.3;
 }
 .lost {
+  display: flex;
+  flex-direction: column;
+}
+.win-loss-message {
   display: flex;
   flex-direction: column;
 }
